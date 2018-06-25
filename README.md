@@ -119,12 +119,11 @@ Due to the time limitation, I can only make it work for the `project_video.mp4`,
 when the performance on the `challenge_video.mp4` got better, the `project_video.mp4` became worse. When I used software to extract the
 difficult frames in the `challenge_video.mp4` to analyse, I found the frames under the bridge is really hard to get the good gradient
 combination. Even the HLS color space was not very helpful, the yellow line in the shadow has totally different Hue value compared 
-to the yellow line in the sunshine. I tried a few combination of Sobel / Magnitude / Direction gradients but couldn't find the satisfying result.
+to the yellow line in the sunshine. I tried a few combination of Sobel / Magnitude / Direction gradients but couldn't find the satisfying thresholds.
 
 In terms of the optimisation, I used Look-ahead filter to reduce the sliding windows' searching area, based on the
 result of the previous frame. But didn't do sanity check so if one frame is awfully wrong, the following frame would be a disaster.
 Fortunately it doesn't happen in `project_video.mp4`, but obviously it is needed in challenge videos. 
 
 Another thing to improve is: the program will crash when the program detects no line or only one line in the camera (as np.fillPoly
-can't work on empty array). I think in that case
-maybe the program should use the lines in the previous frame (if just get lost in a couple of frames).
+can't work on empty array). I think in that case maybe the program should use the lines in the previous frame (if just get lost in a couple of frames).
